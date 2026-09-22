@@ -81,10 +81,10 @@ def excel_report(req, staff):
                   columns=["diary_type","colour","Quantity"])
     out = BytesIO()
     with pd.ExcelWriter(out, engine="openpyxl") as w:
-        req.to_excel(w, "All Requests", index=False)
-        totals.to_excel(w, "Order Totals", index=False)
-        outstanding.to_excel(w, "Outstanding Staff", index=False)
-        staff.to_excel(w, "Staff List", index=False)
+   req.to_excel(w, sheet_name="All Requests", index=False)
+totals.to_excel(w, sheet_name="Order Totals", index=False)
+outstanding.to_excel(w, sheet_name="Outstanding Staff", index=False)
+staff.to_excel(w, sheet_name="Staff List", index=False)
         for ws in w.book.worksheets:
             ws.freeze_panes = "A2"
             for col in ws.columns:
